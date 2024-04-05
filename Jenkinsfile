@@ -1,4 +1,11 @@
-pipeline [
-  agent any
+pipeline {
+    agent any
 
-]
+    stages {
+        stage("Datascientest Variables") {
+            steps {
+                sh "printenv"
+            }
+        }
+    }
+}
