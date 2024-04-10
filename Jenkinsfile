@@ -1,7 +1,5 @@
 pipeline {
   agent any
-  triggers {
-    ////
   environment { 
     DOCKER_ID = "dstdockerhub"
     DOCKER_IMAGE = "datascientestapi"
