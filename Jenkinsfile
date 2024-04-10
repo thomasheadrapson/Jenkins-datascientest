@@ -37,5 +37,8 @@ pipeline {
         }
       }
     }
+    stage('Pushing and Merging') {
+      parallel {
+        stage('Pushing'
   } 
 }
