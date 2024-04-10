@@ -1,5 +1,7 @@
 pipeline {
   agent any
+  triggers {
+    ////
   environment { 
     DOCKER_ID = "dstdockerhub"
     DOCKER_IMAGE = "datascientestapi"
@@ -24,6 +26,14 @@ pipeline {
           docker build -t $DOCKER_ID/$DOCKER_IMAGE:$DOCKER_TAG .
           docker run -d -p 8000:8000 --name jenkins $DOCKER_ID/$DOCKER_IMAGE:$DOCKER_TAG
           '''
+        }
+      }
+    }
+    stage('User acceptance') {
+      steps {
+        input { 
+          message "Proceed to push to main"
+          ok "Yes"
         }
       }
     }
