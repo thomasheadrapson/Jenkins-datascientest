@@ -28,13 +28,10 @@ pipeline {
           }
         }
           stage('User Acceptance') {
-              environment {
-                  mymessage = "Proceed to push to main"
-              }
             steps{
                 input {
-              echo $mymessage
-              ok "Yes"
+                    message : "Proceed to push main"
+                    ok "Yes"
             }    
             }
           }
