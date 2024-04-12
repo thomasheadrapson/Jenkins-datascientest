@@ -33,7 +33,7 @@ pipeline {
               }
             steps{
                 input {
-              message = mymessage
+              echo $mymessage
               ok "Yes"
             }    
             }
