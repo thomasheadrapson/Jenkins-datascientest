@@ -28,9 +28,12 @@ pipeline {
           }
         }
           stage('User Acceptance') {
+              environment {
+                  mymessage = "Proceed to push to main"
+              }
             steps{
                 input {
-              message "Proceed to push to main"
+              message = mymessage
               ok "Yes"
             }    
             }
