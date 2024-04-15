@@ -1,47 +1,13 @@
-
-
 pipeline {
     agent any
-    environment { 
-      DOCKER_ID = "dstdockerhub"
-      DOCKER_IMAGE = "datascientestapi"
-      DOCKER_TAG = "v.${BUILD_ID}.0" 
+    parameters {
+        string(name: 'user', defaultValue: 'John', description: 'A user that triggers the pipeline')
     }
     stages {
-          stage('Deploying') {
-          steps{
-            script {
-              sh '''
-              docker rm -f jenkins
-              docker build -t $DOCKER_ID/$DOCKER_IMAGE:$DOCKER_TAG .
-              docker run -d -p 8000:8000 --name jenkins $DOCKER_ID/$DOCKER_IMAGE:$DOCKER_TAG
-              '''
+        stage('Trigger pipeline') {
+            steps {
+                echo "Pipeline triggered by ${params.user}"
             }
-          }
         }
-         
-          stage('Pushing and Merging'){
-            parallel {
-                stage('Pushing Image') {
-                  environment {
-                      DOCKERHUB_CREDENTIALS = credentials('docker_jenkins')
-                  }
-                  steps {
-                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-                      sh 'docker push $DOCKER_ID/$DOCKER_IMAGE:$DOCKER_TAG'
-                  }
-                }
-            stage('Merging') {
-              steps {
-                echo 'Merging done'
-              }
-            }
-          }
-        }
-    }
-    post {
-      always {
-        sh 'docker logout'
-      }
     }
 }
