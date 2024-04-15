@@ -32,10 +32,10 @@ pipeline {
                 input {
                     message : "Proceed to push main"
                     ok "Yes"
-            }    
+                }    
             }
           }
-          stage('Pushing and Merging'){
+          stage('Pushing and Merging') {
             parallel {
                 stage('Pushing Image') {
                   environment {
