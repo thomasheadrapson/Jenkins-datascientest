@@ -30,7 +30,6 @@ pipeline {
           stage('User Acceptance') {
             steps{
                 input('Continue') {
-                    ok : "Yes"
                 }    
             }
           }
