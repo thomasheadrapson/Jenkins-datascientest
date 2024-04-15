@@ -29,9 +29,8 @@ pipeline {
         }
           stage('User Acceptance') {
             steps{
-                input {
-                    message : "Proceed to push main"
-                    ok "Yes"
+                input('Continue') {
+                    ok : "Yes"
                 }    
             }
           }
