@@ -1,15 +1,16 @@
 pipeline {
     agent any
     stages {
-        stage('Greeting') {
+        stage('Greeting Datascientest') {
             steps {
-                echo 'Hello Datascientest'
+                // Steps here
             }
         }
     }
     post {
         always {
-            echo 'I will always say Hello Datascientest!'
+            echo "Pipeline finished Greeting datascientest"
+            sh "./datascientest-clean.sh"
         }
     }
 }
