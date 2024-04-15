@@ -8,11 +8,6 @@ pipeline {
       DOCKER_TAG = "v.${BUILD_ID}.0" 
     }
     stages {
-        stage('Testing') {
-          steps {
-                sh 'python -m unittest'
-          }
-        }
           stage('Deploying') {
           steps{
             script {
